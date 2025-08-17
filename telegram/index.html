@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Присоединиться к Telegram чату</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('https://kenomarket.w10.site/background.jpg') center/cover;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(2px);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            max-width: 800px;
+        }
+
+        .telegram-image {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+
+        .join-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            width: 6cm;
+            text-transform: uppercase;
+        }
+
+        /* Мобильные устройства */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .telegram-image {
+                max-width: 250px;
+            }
+
+            .join-button {
+                width: 6cm;
+                padding: 15px 0;
+                font-size: 16px;
+            }
+        }
+
+        /* ПК просмотр */
+        @media (min-width: 769px) {
+            .content-wrapper {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .telegram-image {
+                margin-right: -50px;
+            }
+        }
+
+
+    </style>
+</head>
+<body onclick="redirectToTelegram()">
+    <div class="container">
+        <div class="content-wrapper">
+            <img src="https://kenomarket.w10.site/telegram/IMG_20250802_185925_936.jpg" 
+                 alt="Telegram Chat" 
+                 class="telegram-image"
+                 onclick="redirectToTelegram()">
+            
+            <a href="https://telegram.me/kenosofts" 
+               class="join-button"
+               onclick="clearTimers(event)">
+                ВСТУПИТЬ
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let redirectTimeout;
+
+        function redirectToTelegram() {
+            clearTimers();
+            window.location.href = 'https://telegram.me/kenosofts';
+        }
+
+        function clearTimers(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            if (redirectTimeout) {
+                clearTimeout(redirectTimeout);
+            }
+        }
+
+        // Проверяем, мобильное ли устройство
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Настройка перенаправления в зависимости от устройства
+        if (isMobile()) {
+            // На мобильных устройствах - через 8 секунд
+            redirectTimeout = setTimeout(() => {
+                redirectToTelegram();
+            }, 8000);
+        } else {
+            // На ПК - мгновенное перенаправление
+            redirectToTelegram();
+        }
+
+        // Предотвращаем случайные клики при загрузке
+        window.addEventListener('load', () => {
+            document.body.style.pointerEvents = 'auto';
+        });
+    </script>
+</body>
+</html>
