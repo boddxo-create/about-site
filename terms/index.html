@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENOMARKET - Информация и правила</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://kenomarket.w10.site/-5202164822886709653_120.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .home-btn {
+            background-color: rgba(76, 175, 80, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .home-btn:hover {
+            background-color: rgba(56, 142, 60, 0.9);
+            transform: translateY(-1px);
+        }
+        
+        .content-container {
+            flex: 1;
+            padding: 30px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .content-wrapper h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 15px;
+        }
+        
+        .content-wrapper h3 {
+            color: #4A90E2;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .content-wrapper p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .content-wrapper strong {
+            color: #333;
+        }
+        
+        .content-wrapper a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+        
+        .content-wrapper a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 10px;
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+                line-height: 1.3;
+            }
+            
+            .home-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            
+            .content-container {
+                padding: 20px 10px;
+            }
+            
+            .content-wrapper {
+                padding: 25px;
+                border-radius: 8px;
+            }
+            
+            .content-wrapper h2 {
+                font-size: 24px;
+            }
+            
+            .content-wrapper h3 {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .home-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            
+            .content-container {
+                padding: 15px 5px;
+            }
+            
+            .content-wrapper {
+                padding: 20px;
+            }
+            
+            .content-wrapper h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KENOMARKET: информация и правила</h1>
+        <div class="header-buttons">
+            <a href="https://www.kenomarket.pl/home" class="home-btn">На Главную</a>
+            <a href="https://kenomarket.w10.site/telegram/" class="home-btn">Мы в Telegram</a>
+        </div>
+    </div>
+    
+    <div class="content-container">
+        <div class="content-wrapper">
+            <h2>Информация о сервисе</h2>
+            
+            <p>Наш сервис под названием <strong>"KENOMARKET"</strong> (кеномаркет) начал свою деятельность в 2025 году как каталог приложений для ОС Android и был создан на движке Google Sites. Проект создан с целью собрать в одно место все необходимые приложения для выживания на старых версиях Android и не является коммерческим.</p>
+            
+            <h3>Версии и клиенты</h3>
+            <p>Сайт имеет основную версию и лайт версию. У нашего сервиса пока что нет клиентских приложений и доступ возможен только через браузер по адресу <a href="https://www.kenomarket.pl/home" target="_blank">https://www.kenomarket.pl/home</a>.</p>
+            
+            <h3>Доступность сайта</h3>
+            <p>Интерфейс этого сайта только на русском языке, но его можно перевести на любой другой язык с помощью переводчика, встроенного в браузер. Для корректного отображения сайта нужен Android 4.1 или более поздняя версия, через браузер Opera Mini сайт работает на любых версиях Android и на любых устройствах. Сайт одинаково открывается в любых странах где есть интернет.</p>
+            
+            <h3>Публикация приложений</h3>
+            <p>Добавлять приложения на сайт могут только администраторы. Обычные посетители не могут добавлять приложения, но могут предложить приложение через наш чат в Telegram или страницу для обратной связи. После одобрения администрацией оно будет добавлено.</p>
+            
+            <h3>Наш чат и связь с нами</h3>
+            <p>Наш чат есть только в Telegram. В MAX, WeChat, Viber, WhatsApp и других мессенджерах наших чатов и каналов нет. Официальных аккаунтов Kenomarket в соцсетях тоже нет.</p>
+            
+            <h3>Требования к приложениям</h3>
+            <p>Это каталог приложений для Android. Приложений для iOS, Windows, Symbian и других ОС здесь нет. Приложения, которые здесь имеются, поддерживают Android 4.4 и ниже. Версии с требованием Android 5.0+ могут быть добавлены, когда на сайте уже присутствуют версии с более низким требованием. Версии с требованием Android 6.0+ и выше добавлены не будут.</p>
+        </div>
+    </div>
+</body>
+</html>
