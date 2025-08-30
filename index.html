@@ -215,6 +215,21 @@
             min-height: 100vh;
             padding: 80px 20px;
             animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .phone-image {
+            max-width: 300px;
+            height: auto;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-out 0.8s both;
         }
         
         .logo {
@@ -249,7 +264,6 @@
         }
         
         .main-button:hover {
-            transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
             background: linear-gradient(45deg, #2c5aa0, #4a90e2);
         }
@@ -296,7 +310,6 @@
         }
         
         .app-card:hover {
-            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             background: rgba(255, 255, 255, 0.15);
         }
@@ -314,10 +327,6 @@
             object-fit: cover;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
-        }
-        
-        .app-card:hover .app-icon {
-            transform: scale(1.1);
         }
         
         .app-name {
@@ -341,7 +350,6 @@
         }
         
         .download-btn:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
             background: linear-gradient(45deg, #2c5aa0, #4a90e2);
         }
@@ -364,7 +372,6 @@
         }
         
         .more-apps-btn:hover {
-            transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
             background: linear-gradient(45deg, #764ba2, #667eea);
         }
@@ -381,7 +388,6 @@
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
@@ -560,13 +566,25 @@
         }
         
         .floating-button:hover {
-            transform: translateX(-50%) translateY(-3px);
             box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
             background: linear-gradient(45deg, #2c5aa0, #4a90e2);
         }
 
         /* Мобильная адаптация */
         @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+            }
+            
+            .hero-content {
+                margin-bottom: 30px;
+            }
+            
+            .phone-image {
+                max-width: 250px;
+                margin-top: 20px;
+            }
+            
             .apps-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -619,6 +637,23 @@
             .sidebar {
                 width: 280px;
                 left: -280px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hero-section {
+                flex-direction: row;
+                text-align: left;
+                gap: 60px;
+            }
+            
+            .hero-content {
+                text-align: left;
+            }
+            
+            .phone-image {
+                max-width: 350px;
+                margin-top: 0;
             }
         }
         
@@ -697,9 +732,12 @@
 
     <div class="container">
         <section class="hero-section">
-            <h1 class="logo">KENOMARKET</h1>
-            <p class="tagline">Только проверенные приложения для старых версий Android</p>
-            <a href="https://www.kenomarket.pl/home" class="main-button">Перейти на сайт</a>
+            <div class="hero-content">
+                <h1 class="logo">KENOMARKET</h1>
+                <p class="tagline">Только проверенные приложения для старых версий Android</p>
+                <a href="https://www.kenomarket.pl/home" class="main-button">Перейти на сайт</a>
+            </div>
+            <img src="/vk/phone1.png" alt="Интерфейс сайта на смартфоне" class="phone-image">
         </section>
 
         <section class="features-section">
@@ -731,17 +769,17 @@
                     <a href="https://www.kenomarket.pl/internet/facebooklite" class="download-btn">Скачать</a>
                 </div>
                 <div class="app-card">
-                    <img src="https://kenomarket.w10.site/about/operamini.png" alt="Facebook Lite" class="app-icon">
+                    <img src="https://kenomarket.w10.site/about/operamini.png" alt="Opera Mini" class="app-icon">
                     <h3 class="app-name">Opera Mini</h3>
                     <a href="https://www.kenomarket.pl/internet/operamini" class="download-btn">Скачать</a>
                 </div>
                 <div class="app-card">
-                    <img src="https://kenomarket.w10.site/about/ucbrowser.png" alt="Facebook Lite" class="app-icon">
+                    <img src="https://kenomarket.w10.site/about/ucbrowser.png" alt="UC Browser" class="app-icon">
                     <h3 class="app-name">UC Browser</h3>
                     <a href="https://www.kenomarket.pl/internet/ucbrowser" class="download-btn">Скачать</a>
                 </div>
                 <div class="app-card">
-                    <img src="https://kenomarket.w10.site/about/firefoxbrowser.png" alt="Facebook Lite" class="app-icon">
+                    <img src="https://kenomarket.w10.site/about/firefoxbrowser.png" alt="Firefox" class="app-icon">
                     <h3 class="app-name">Firefox</h3>
                     <a href="https://www.kenomarket.pl/internet/firefox" class="download-btn">Скачать</a>
                 </div>
@@ -791,40 +829,3 @@
             const floatingButton = document.getElementById('floatingButton');
             const heroHeight = heroSection.offsetHeight;
             const scrollPosition = window.scrollY;
-            
-            if (scrollPosition > heroHeight * 0.8) {
-                floatingButton.classList.add('show');
-            } else {
-                floatingButton.classList.remove('show');
-            }
-        });
-        
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            const menuButton = document.querySelector('.menu-button');
-            
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
-            menuButton.classList.toggle('active');
-        }
-        
-        function closeSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            const menuButton = document.querySelector('.menu-button');
-            
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-            menuButton.classList.remove('active');
-        }
-        
-        // Закрытие по нажатию Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeSidebar();
-            }
-        });
-    </script>
-</body>
-</html>
