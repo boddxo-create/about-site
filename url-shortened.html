@@ -62,7 +62,7 @@
             font-weight: 500;
         }
 
-        input[type="url"], input[type="text"] {
+        input[type="url"] {
             width: 100%;
             padding: 15px 20px;
             border: 2px solid #333333;
@@ -73,11 +73,45 @@
             color: #ffffff;
         }
 
-        input[type="url"]:focus, input[type="text"]:focus {
+        input[type="url"]:focus {
             outline: none;
             border-color: #ffffff;
             background: #000000;
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .url-input-wrapper {
+            display: flex;
+            border: 2px solid #333333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .url-input-wrapper:focus-within {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .url-prefix {
+            background: #666666;
+            color: #ffffff;
+            padding: 15px 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .url-input-wrapper input[type="text"] {
+            flex: 1;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            background: #000000;
+            color: #ffffff;
+            outline: none;
         }
 
         .button-group {
@@ -245,7 +279,10 @@
             
             <div class="input-group">
                 <label for="customAlias">Пользовательская ссылка (необязательно):</label>
-                <input type="text" id="customAlias" placeholder="http://is.gd/~you link~" maxlength="30">
+                <div class="url-input-wrapper">
+                    <div class="url-prefix">http://is.gd/</div>
+                    <input type="text" id="customAlias" placeholder="ваша ссылка" maxlength="30">
+                </div>
             </div>
             
             <div class="button-group">
