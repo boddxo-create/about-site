@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сокращатель ссылок is.gd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(33, 38, 45, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #22c55e;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        input[type="url"], input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #374151;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            color: #ffffff;
+        }
+
+        input[type="url"]:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #ffffff;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: #374151;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .btn-secondary:hover {
+            background: #22c55e;
+            color: #000000;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .result {
+            background: #1f2937;
+            border: 2px solid #374151;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h3 {
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-url {
+            background: #111827;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            word-break: break-all;
+            margin-bottom: 15px;
+            font-family: monospace;
+            font-size: 18px;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .error {
+            background: #7f1d1d;
+            color: #fca5a5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #991b1b;
+        }
+
+        .success {
+            background: #14532d;
+            color: #86efac;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #16a34a;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #d1d5db;
+        }
+
+        .spinner {
+            border: 4px solid #374151;
+            border-top: 4px solid #22c55e;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span>🔗</span>
+        </div>
+        <h1>Сокращатель ссылок</h1>
+        
+        <form id="shortenForm">
+            <div class="input-group">
+                <label for="originalUrl">Введите длинную ссылку:</label>
+                <input type="url" id="originalUrl" placeholder="https://example.com/very/long/url/path" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="customAlias">Пользовательский алиас (необязательно):</label>
+                <input type="text" id="customAlias" placeholder="my-short-link" maxlength="30">
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Сократить ссылку</button>
+                <button type="button" id="clearBtn" class="btn-secondary">Очистить</button>
+            </div>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Сокращаем вашу ссылку...</p>
+        </div>
+
+        <div class="result" id="result">
+            <h3>Сокращенная ссылка:</h3>
+            <div class="result-url" id="shortUrl"></div>
+            <button type="button" id="copyBtn" class="btn-success">📋 Копировать ссылку</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalLinks">0</span>
+                <div class="stat-label">Ссылок создано</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="todayLinks">0</span>
+                <div class="stat-label">Сегодня</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let totalLinks = 0;
+        let todayLinks = 0;
+
+        document.getElementById('shortenForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const originalUrl = document.getElementById('originalUrl').value;
+            const customAlias = document.getElementById('customAlias').value;
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            const shortUrlElement = document.getElementById('shortUrl');
+            
+            // Показываем загрузку
+            loading.style.display = 'block';
+            result.classList.remove('show');
+            
+            // Используем JSONP для обхода CORS
+            const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+            
+            // Создаем глобальную функцию для обработки ответа
+            window[callbackName] = function(data) {
+                loading.style.display = 'none';
+                
+                if (data && data.shorturl) {
+                    // Успешно создана короткая ссылка
+                    shortUrlElement.textContent = data.shorturl;
+                    shortUrlElement.className = 'result-url';
+                    result.classList.add('show');
+                    
+                    // Добавляем анимацию успеха
+                    shortUrlElement.style.animation = 'fadeIn 0.5s ease';
+                } else if (data && data.errormessage) {
+                    // Ошибка от API
+                    shortUrlElement.textContent = `Ошибка: ${data.errormessage}`;
+                    shortUrlElement.className = 'result-url error';
+                    result.classList.add('show');
+                } else {
+                    // Неизвестная ошибка
+                    shortUrlElement.textContent = 'Произошла неизвестная ошибка';
+                    shortUrlElement.className = 'result-url error';
+                    result.classList.add('show');
+                }
+                
+                // Очищаем callback и script элемент
+                document.head.removeChild(script);
+                delete window[callbackName];
+            };
+            
+            // Обработка ошибок загрузки скрипта
+            const errorHandler = function() {
+                loading.style.display = 'none';
+                shortUrlElement.textContent = 'Произошла ошибка при сокращении ссылки. Проверьте подключение к интернету или попробуйте позже.';
+                shortUrlElement.className = 'result-url error';
+                result.classList.add('show');
+                
+                // Очищаем callback
+                if (window[callbackName]) {
+                    delete window[callbackName];
+                }
+                if (script.parentNode) {
+                    document.head.removeChild(script);
+                }
+            };
+            
+            // Создаем script элемент для JSONP запроса
+            const script = document.createElement('script');
+            script.onerror = errorHandler;
+            
+            // Формируем URL для JSONP запроса
+            let apiUrl = `https://is.gd/create.php?format=json&callback=${callbackName}&url=${encodeURIComponent(originalUrl)}`;
+            if (customAlias) {
+                apiUrl += `&shorturl=${encodeURIComponent(customAlias)}`;
+            }
+            
+            script.src = apiUrl;
+            
+            // Добавляем таймаут
+            setTimeout(() => {
+                if (window[callbackName]) {
+                    errorHandler();
+                }
+            }, 10000);
+            
+            document.head.appendChild(script);
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', async function() {
+            const shortUrl = document.getElementById('shortUrl').textContent;
+            
+            try {
+                await navigator.clipboard.writeText(shortUrl);
+                
+                // Показываем уведомление об успешном копировании
+                const button = this;
+                const originalText = button.textContent;
+                button.textContent = '✅ Скопировано!';
+                button.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+                }, 2000);
+                
+            } catch (error) {
+                // Fallback для старых браузеров
+                const textArea = document.createElement('textarea');
+                textArea.value = shortUrl;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const button = this;
+                const originalText = button.textContent;
+                button.textContent = '✅ Скопировано!';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            document.getElementById('originalUrl').value = '';
+            document.getElementById('customAlias').value = '';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('originalUrl').focus();
+        });
+
+        // Автофокус на поле ввода
+        document.getElementById('originalUrl').focus();
+    </script>
+</body>
+  </html>
