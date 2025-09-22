@@ -80,6 +80,38 @@
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
         }
 
+        .service-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .service-option {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #333333;
+            border-radius: 12px;
+            background: #000000;
+            color: #cccccc;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .service-option.active {
+            border-color: #ffffff;
+            color: #ffffff;
+            background: #333333;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .service-option:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
         .url-input-wrapper {
             display: flex;
             border: 2px solid #333333;
@@ -257,6 +289,11 @@
                 flex-direction: column;
             }
             
+            .service-selector {
+                display: flex;
+                gap: 10px;
+            }
+            
             .stats {
                 flex-direction: column;
                 gap: 15px;
@@ -276,11 +313,19 @@
                 <label for="originalUrl">Введите ссылку:</label>
                 <input type="url" id="originalUrl" placeholder="https://kenomarket.pl/app/...." required>
             </div>
+
+            <div class="input-group">
+                <label>Выберите сервис:</label>
+                <div class="service-selector">
+                    <div class="service-option active" data-service="isgd">is.gd</div>
+                    <div class="service-option" data-service="tinyurl">TinyURL</div>
+                </div>
+            </div>
             
             <div class="input-group">
                 <label for="customAlias">Пользовательская ссылка (необязательно):</label>
                 <div class="url-input-wrapper">
-                    <div class="url-prefix">http://is.gd/</div>
+                    <div class="url-prefix" id="urlPrefix">is.gd/</div>
                     <input type="text" id="customAlias" placeholder="ваша ссылка" maxlength="30">
                 </div>
             </div>
@@ -317,6 +362,27 @@
     <script>
         let totalLinks = 0;
         let todayLinks = 0;
+        let selectedService = 'isgd';
+
+        // Обработчик выбора сервиса
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Убираем активный класс у всех опций
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('active'));
+                // Добавляем активный класс текущей опции
+                this.classList.add('active');
+                
+                selectedService = this.dataset.service;
+                const urlPrefix = document.getElementById('urlPrefix');
+                
+                // Обновляем префикс в зависимости от выбранного сервиса
+                if (selectedService === 'tinyurl') {
+                    urlPrefix.textContent = 'tinyurl.com/';
+                } else {
+                    urlPrefix.textContent = 'is.gd/';
+                }
+            });
+        });
 
         document.getElementById('shortenForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -331,6 +397,16 @@
             loading.style.display = 'block';
             result.classList.remove('show');
             
+            if (selectedService === 'tinyurl') {
+                // Используем TinyURL API
+                shortenWithTinyURL(originalUrl, customAlias, loading, result, shortUrlElement);
+            } else {
+                // Используем is.gd API
+                shortenWithIsGd(originalUrl, customAlias, loading, result, shortUrlElement);
+            }
+        });
+
+        function shortenWithIsGd(originalUrl, customAlias, loading, result, shortUrlElement) {
             // Используем JSONP для обхода CORS
             const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
             
@@ -399,7 +475,42 @@
             }, 10000);
             
             document.head.appendChild(script);
-        });
+        }
+
+        function shortenWithTinyURL(originalUrl, customAlias, loading, result, shortUrlElement) {
+            // TinyURL API
+            let apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(originalUrl)}`;
+            if (customAlias) {
+                apiUrl += `&alias=${encodeURIComponent(customAlias)}`;
+            }
+            
+            fetch(apiUrl)
+                .then(response => response.text())
+                .then(data => {
+                    loading.style.display = 'none';
+                    
+                    if (data && data.startsWith('http')) {
+                        // Успешно создана короткая ссылка
+                        shortUrlElement.textContent = data;
+                        shortUrlElement.className = 'result-url';
+                        result.classList.add('show');
+                        
+                        // Добавляем анимацию успеха
+                        shortUrlElement.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        // Ошибка от API
+                        shortUrlElement.textContent = `Ошибка: ${data}`;
+                        shortUrlElement.className = 'result-url error';
+                        result.classList.add('show');
+                    }
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    shortUrlElement.textContent = 'Произошла ошибка при сокращении ссылки. Проверьте подключение к интернету или попробуйте позже.';
+                    shortUrlElement.className = 'result-url error';
+                    result.classList.add('show');
+                });
+        }
 
         document.getElementById('copyBtn').addEventListener('click', async function() {
             const shortUrl = document.getElementById('shortUrl').textContent;
@@ -448,4 +559,4 @@
         document.getElementById('originalUrl').focus();
     </script>
 </body>
-  </html>
+    </html>
