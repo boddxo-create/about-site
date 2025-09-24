@@ -1,17 +1,16 @@
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1e3c72 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+       body {
+       font-family: 'Arial', sans-serif;
+       background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1e3c72 100%);
+       min-height: 100vh;
+       overflow-x: hidden;
+       position: relative;
+       }
 
         /* Анимированный фон */
         .animated-bg {
@@ -651,4 +650,3 @@
                 font-size: 1rem;
             }
         }
-    </style>
