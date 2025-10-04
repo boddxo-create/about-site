@@ -28,16 +28,16 @@
 
   "screenshots": [
     {
-      "src": "/webscreenshots/1.webp",
+      "src": "https://cdn.discordapp.com/attachments/1419238453085995010/1423945506656358450/Screenshot_2025-10-04-11-08-00-079_com.android.chrome.jpg?ex=68e22818&is=68e0d698&hm=4bde07178d43fecb0097f9c6de36e63255b6be5ae00ec8675a9bf7b802bda263&",
       "sizes": "750x1334",
-      "type": "image/webp",
+      "type": "image/jpg",
       "form_factor": "narrow",
       "label": "Мобильный вид приложения"
     },
     {
-      "src": "/webscreenshots/2.webp",
+      "src": "https://cdn.discordapp.com/attachments/1419238453085995010/1423945506933178368/Screenshot_2025-10-04-11-08-11-508_com.android.chrome.jpg?ex=68e22818&is=68e0d698&hm=feb41482e1acd6edf57ab77baf69294fe0b28107c779e2a8d673ec954fa3d81f&",
       "sizes": "750x1334",
-      "type": "image/webp",
+      "type": "image/jpg",
       "form_factor": "narrow",
       "label": "Мобильный вид приложения"
     }
