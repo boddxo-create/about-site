@@ -1,0 +1,48 @@
+{
+  "name": "NeonApps About",
+  "short_name": "NeonApps About",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#00ff88",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://kenomarket.pl/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://kenomarket.pl/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://kenomarket.pl/apple-touch-icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+
+  "screenshots": [
+    {
+      "src": "/webscreenshots/1.webp",
+      "sizes": "750x1334",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Мобильный вид приложения"
+    },
+    {
+      "src": "/webscreenshots/2.webp",
+      "sizes": "750x1334",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Мобильный вид приложения"
+    }
+  ],
+  
+  "categories": ["utilities", "tools"],
+  "lang": "ru"
+}
