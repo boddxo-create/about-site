@@ -5,6 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeonApps - Информация и правила</title>
     <link rel="stylesheet" href="/terms/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent !important;
+            color: #ffffff;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #333;
+            background: #1a1a1a;
+            margin-top: 20px;
+        }
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-bottom: 10px;
+        }
+        .footer-title {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        @media (max-width: 768px) {
+            .footer-links {
+                gap: 10px;
+            }
+            .footer-link {
+                font-size: 0.8rem;
+                padding: 3px 6px;
+            }
+            .social-icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer {
+                padding: 15px;
+            }
+            .footer-copyright {
+                font-size: 0.8rem;
+            }
+            .footer-title {
+                font-size: 0.9rem;
+            }
+            .social-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -36,6 +100,10 @@
             <h3>Требования к приложениям</h3>
             <p>Это каталог приложений для Android. Приложений для iOS, Windows, Symbian и других ОС здесь нет. Приложения, которые здесь имеются, поддерживают Android 4.4 и ниже. Версии с требованием Android 5.0+ могут быть добавлены, когда на сайте уже присутствуют версии с более низким требованием. Версии с требованием Android 6.0+ и выше добавлены не будут.</p>
         </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-title">примечание: наши единственные сайты это kenomarket.pl и neonapps.ru</div>
     </div>
 </body>
 </html>
