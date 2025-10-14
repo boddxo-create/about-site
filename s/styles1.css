@@ -229,7 +229,7 @@
 
         .main-button {
             display: inline-block;
-            background: #ffffff;
+            background: #b3d9ff;
             color: #000000;
             padding: 15px 40px;
             border-radius: 50px;
@@ -317,7 +317,7 @@
 
         .download-btn {
             display: inline-block;
-            background: #ffffff;
+            background: #b3d9ff;
             color: #000000;
             padding: 10px 20px;
             border-radius: 25px;
@@ -335,7 +335,7 @@
 
         .more-apps-btn {
             display: block;
-            background: #ffffff;
+            background: #b3d9ff;
             color: #000000;
             padding: 18px 40px;
             border-radius: 50px;
